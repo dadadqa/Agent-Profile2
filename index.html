@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agent Access - Specter Liu</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Orbitron', sans-serif;
+            background: black;
+            color: white;
+            overflow: hidden;
+        }
+        .container {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        video {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.3;
+        }
+        .unlock-screen {
+            position: absolute;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 20px;
+            text-align: center;
+            border: 2px solid #0f0;
+            box-shadow: 0 0 10px #0f0;
+        }
+        .unlock-screen button {
+            margin-top: 10px;
+            background: #0f0;
+            border: none;
+            padding: 10px 20px;
+            font-size: 18px;
+            cursor: pointer;
+        }
+        .profile {
+            display: none;
+            text-align: center;
+            animation: fadeIn 1s forwards;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.8); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        .typing::after {
+            content: '|';
+            display: inline-block;
+            animation: blink 0.7s infinite;
+        }
+        @keyframes blink {
+            50% { opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <video autoplay loop muted>
+            <source src="3129785-uhd_3840_2160_25fps.mp4" type="video/mp4">
+        </video>
+        
+        <div class="unlock-screen" id="unlock-screen">
+            <h2>RESTRICTED ACCESS</h2>
+            <p>Click to unlock</p>
+            <button onclick="unlockProfile()">UNLOCK</button>
+        </div>
+        
+        <div class="profile" id="profile">
+            <h1>Welcome, <span class="typing" id="typing"></span></h1>
+            <img src="profile.png" alt="Agent Specter Liu" width="200">
+            <p>Clearance Level: 15</p>
+            <p>ID: AGT-2025-047</p>
+            <p>Status: Active Undercover</p>
+        </div>
+    </div>
+
+    <script>
+        function unlockProfile() {
+            document.getElementById('unlock-screen').style.display = 'none';
+            document.getElementById('profile').style.display = 'block';
+            
+            let text = "Specter Liu";
+            let i = 0;
+            function typeWriter() {
+                if (i < text.length) {
+                    document.getElementById("typing").innerHTML += text.charAt(i);
+                    i++;
+                    setTimeout(typeWriter, 100);
+                }
+            }
+            typeWriter();
+        }
+    </script>
+</body>
+</html>
